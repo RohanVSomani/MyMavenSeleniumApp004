@@ -16,9 +16,12 @@ public class App {
 
         System.setProperty("MOZ_DISABLE_CONTENT_SANDBOX", "1");
 
-        FirefoxOptions options = new FirefoxOptions();
+FirefoxOptions options = new FirefoxOptions();
+options.addArguments("--headless");              // run without UI
+options.addArguments("--no-sandbox");            // Jenkins fix
+options.addArguments("--disable-dev-shm-usage"); // memory fix
 
-        WebDriver driver = new FirefoxDriver(options);
+WebDriver driver = new FirefoxDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.manage().window().maximize();
